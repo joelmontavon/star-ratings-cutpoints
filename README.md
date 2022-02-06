@@ -1,5 +1,7 @@
-<b>bla bla</b>
-
+<h1>Stars Cutpoints using Clustering</h1>
+<p>This tutorial will guide you thru how CMS calculates the cutpoints used in the Star Ratings program.</p>
+<p>CMS publishes the data related to their Star Ratings on their <a href="https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData">Part C and D Performance Data</a> webpage. I have downloaded the <a href="https://www.cms.gov/files/zip/2022-star-ratings-data-table-oct-06-2021.zip">2022 Star Ratings Data Table</a> and unzipped it to a directory on my computer.</p>
+<p>Now, I need to read the excel file into a dataframe. I've also used a converter to remove some spaces after the contract IDs and renamed some of the columns.</p>
 Downloads:
 https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData
 
