@@ -301,7 +301,7 @@ fig.update_xaxes(showgrid=False, title="Rate", tickformat = '.0%')
 fig.update_yaxes(showgrid=False, title="", zeroline=True, zerolinecolor='black', zerolinewidth=3, showticklabels=False)
 fig.update_layout(height=300, plot_bgcolor='white') 
 fig.show()
-![https://github.com/joelmontavon/stars_cutpoints/blob/main/newplot.png](attachment:newplot.png)
+<img src="https://github.com/joelmontavon/stars_cutpoints/blob/main/newplot.png"></img>
 
 <p>To create the final cutpoints, I use the minimum rate across all of the groups for each cluster.</p>
 
