@@ -285,7 +285,10 @@ for sample in kf.split(measure_data):
 ```
 
 <p>Using plotly, I plot the data data using a scatter plot to view all of the points.</p>
+from plotly.offline import init_notebook_mode, iplot
 import plotly.express as px
+
+init_notebook_mode(connected=True)
 
 plot_data = samples_data[samples_data['stars'] != 1]
 plot_data['x'] = plot_data['rate']
@@ -296,11 +299,9 @@ plot_data['size'] = 20
 fig = px.scatter(plot_data, x="x", y="y", color="color", size="size", color_discrete_sequence=['red','orange','green','blue'])
 fig.update_xaxes(showgrid=False, title="Rate", tickformat = '.0%')
 fig.update_yaxes(showgrid=False, title="", zeroline=True, zerolinecolor='black', zerolinewidth=3, showticklabels=False)
-fig.update_layout(height=300, plot_bgcolor='white')
-fig.to_html(full_html=False, include_plotlyjs='cdn')  
-fig.write_html(r'D:\projects\python\cutpoints\graph.html', full_html=False, include_plotlyjs='cdn')
+fig.update_layout(height=300, plot_bgcolor='white') 
 fig.show()
-![newplot.png](attachment:newplot.png)
+![https://github.com/joelmontavon/stars_cutpoints/blob/main/newplot.png](attachment:newplot.png)
 
 <p>To create the final cutpoints, I use the minimum rate across all of the groups for each cluster.</p>
 
