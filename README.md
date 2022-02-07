@@ -63,17 +63,152 @@ stars = stars.sort_values(['measure','rate'])
 stars
 ```
 
-    IOPub data rate exceeded.
-    The notebook server will temporarily stop sending output
-    to the client in order to avoid crashing it.
-    To change this limit, set the config variable
-    `--NotebookApp.iopub_data_rate_limit`.
-    
-    Current values:
-    NotebookApp.iopub_data_rate_limit=1000000.0 (bytes/sec)
-    NotebookApp.rate_limit_window=3.0 (secs)
-    
-    
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>contract_id</th>
+      <th>contract_name</th>
+      <th>organization_marketing_name</th>
+      <th>organization_type</th>
+      <th>parent_organization</th>
+      <th>contract_type</th>
+      <th>measure</th>
+      <th>rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>345</th>
+      <td>H4091</td>
+      <td>SIMPRA ADVANTAGE, INC.</td>
+      <td>Simpra Advantage</td>
+      <td>Local CCP</td>
+      <td>Associated Care Ventures, Inc.</td>
+      <td>MAPD</td>
+      <td>c01_breast_cancer_screening</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>259</th>
+      <td>H3291</td>
+      <td>PRUITTHEALTH PREMIER, INC.</td>
+      <td>PruittHealth Premier</td>
+      <td>Local CCP</td>
+      <td>UNICO Premier, LLC</td>
+      <td>MAPD</td>
+      <td>c01_breast_cancer_screening</td>
+      <td>0.18</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>H1587</td>
+      <td>ARKANSAS SUPERIOR SELECT, INC.</td>
+      <td>Tribute Health Plans</td>
+      <td>Local CCP</td>
+      <td>Select Founders, LLC</td>
+      <td>MAPD</td>
+      <td>c01_breast_cancer_screening</td>
+      <td>0.36</td>
+    </tr>
+    <tr>
+      <th>179</th>
+      <td>H2292</td>
+      <td>OXFORD HEALTH INSURANCE, INC.</td>
+      <td>UnitedHealthcare</td>
+      <td>Local CCP</td>
+      <td>UnitedHealth Group, Inc.</td>
+      <td>MAPD</td>
+      <td>c01_breast_cancer_screening</td>
+      <td>0.42</td>
+    </tr>
+    <tr>
+      <th>758</th>
+      <td>H9952</td>
+      <td>MEDICA HEALTH PLANS</td>
+      <td>Medica</td>
+      <td>Local CCP</td>
+      <td>Medica Holding Company</td>
+      <td>MAPD</td>
+      <td>c01_breast_cancer_screening</td>
+      <td>0.44</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33853</th>
+      <td>H9207</td>
+      <td>HEALTH PARTNERS PLANS, INC.</td>
+      <td>Health Partners Medicare</td>
+      <td>Local CCP</td>
+      <td>Health Partners Plans, Inc.</td>
+      <td>MAPD</td>
+      <td>d12_statin_use_in_persons_with_diabetes_supd</td>
+      <td>0.92</td>
+    </tr>
+    <tr>
+      <th>33897</th>
+      <td>H9834</td>
+      <td>QUARTZ HEALTH PLAN MN CORPORATION</td>
+      <td>Quartz Medicare Advantage</td>
+      <td>Local CCP</td>
+      <td>University of Wisconsin Hospitals and Clincs A...</td>
+      <td>MAPD</td>
+      <td>d12_statin_use_in_persons_with_diabetes_supd</td>
+      <td>0.92</td>
+    </tr>
+    <tr>
+      <th>33436</th>
+      <td>H3467</td>
+      <td>PROCARE ADVANTAGE, LLC</td>
+      <td>ProCare Advantage</td>
+      <td>Local CCP</td>
+      <td>First Sacramento Capital Funding LLC</td>
+      <td>MAPD</td>
+      <td>d12_statin_use_in_persons_with_diabetes_supd</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <th>33278</th>
+      <td>H1777</td>
+      <td>CATHOLIC SPECIAL NEEDS PLAN, LLC</td>
+      <td>ArchCare Advantage</td>
+      <td>Local CCP</td>
+      <td>Catholic Health Care System</td>
+      <td>MAPD</td>
+      <td>d12_statin_use_in_persons_with_diabetes_supd</td>
+      <td>0.95</td>
+    </tr>
+    <tr>
+      <th>33315</th>
+      <td>H2185</td>
+      <td>LIFEWORKS ADVANTAGE, LLC</td>
+      <td>LifeWorks Advantage</td>
+      <td>Local CCP</td>
+      <td>MFA Lifeworks, LLC</td>
+      <td>MAPD</td>
+      <td>d12_statin_use_in_persons_with_diabetes_supd</td>
+      <td>0.97</td>
+    </tr>
+  </tbody>
+</table>
+<p>17962 rows × 8 columns</p>
+</div>
+
+
 
 <p>Now, the real work begins.</p>
 <p>CMS using uses mean resampling to determine the cutpoints. They create 10 equal-sized groups and then apply the clustering algorithm 10 types leaving one group out each time.</p>
@@ -160,7 +295,7 @@ fig.write_html(r'D:\projects\python\cutpoints\plot.html', full_html=False, inclu
 fig.show()
 ```
 
-<iframe src="https://github.com/joelmontavon/stars_cutpoints/blob/main/plot.html"></iframe>
+<img src="https://github.com/joelmontavon/stars_cutpoints/blob/main/plot.png"></img>
 
 <p>To create the final cutpoints, I use the minimum rate across all of the groups for each cluster.</p>
 
@@ -177,13 +312,44 @@ cutpoints = samples_data.groupby('stars').agg('min').reset_index()
 cutpoints[cutpoints['stars'] != 1]
 ```
 
-    |    |   stars |   rate |
-    |---:|--------:|-------:|
-    |  1 |       2 |   0.75 |
-    |  2 |       3 |   0.82 |
-    |  3 |       4 |   0.86 |
-    |  4 |       5 |   0.9  |
-    
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>stars</th>
+      <th>rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>0.82</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>0.86</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0.90</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 <p>I can now put this all together and loop over several measures and contract types. I use pivot() to reorient the data.</p>
 
@@ -244,19 +410,6 @@ thresholds_data.pivot(index=['contract_type','stars'], columns='measure')['rate'
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
