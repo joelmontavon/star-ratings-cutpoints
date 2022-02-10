@@ -1,7 +1,9 @@
+<style>p {font-size: 14px;}</style>
 <h1>Star Ratings Cutpoints using Clustering</h1>
 <p>This tutorial will guide you thru how CMS calculates the cutpoints used in the Star Ratings program.</p>
 <p>CMS publishes the data related to their Star Ratings on their <a href="https://www.cms.gov/Medicare/Prescription-Drug-Coverage/PrescriptionDrugCovGenIn/PerformanceData">Part C and D Performance Data</a> webpage. I have downloaded the <a href="https://www.cms.gov/files/zip/2022-star-ratings-data-table-oct-06-2021.zip">2022 Star Ratings Data Table</a> and unzipped it to a directory on my computer.</p>
-<p>Now, I need to read the excel file into a dataframe. I've also used a converter to remove some spaces after the contract IDs and renamed some of the columns.</p>
+
+<p>Now, I need to read the CSV file into a dataframe. I've also used a converter to remove some spaces after the contract IDs and renamed some of the columns.</p>
 
 
 ```python
@@ -13,7 +15,7 @@ import re
 #update with your own path; prefix your string for paths with r in windows
 file = r'D:\projects\python\cutpoints\2022 Star Ratings Data Table - Measure Data (Oct 06 2021).csv'
 
-#read excel file; converter strip an whitespace from contract_id
+#read the CSV file; converter strip an whitespace from contract_id
 stars = pd.read_csv(file, skiprows=lambda x: x in [0,1,3], converters={'Unnamed: 0': lambda x: x.strip()})
 #add and/or rename some column names
 stars = stars.rename({'Unnamed: 0':'CONTRACT_ID','Unnamed: 1':'Organization Type','Unnamed: 2':'Contract Name','Unnamed: 3':'Organization Marketing Name','Unnamed: 4':'Parent Organization'}, axis='columns')
@@ -67,6 +69,19 @@ stars
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -295,7 +310,64 @@ fig.write_html(r'D:\projects\python\cutpoints\plot.html', full_html=False, inclu
 fig.show()
 ```
 
-<img src="https://github.com/joelmontavon/stars_cutpoints/blob/main/plot.png"></img>
+
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-latest.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+
+
+
+<div>                            <div id="a533d2af-1f3d-42de-a021-240e79dbb167" class="plotly-graph-div" style="height:300px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a533d2af-1f3d-42de-a021-240e79dbb167")) {                    Plotly.newPlot(                        "a533d2af-1f3d-42de-a021-240e79dbb167",                        [{"hovertemplate": "color=2<br>x=%{x}<br>y=%{y}<br>size=%{marker.size}<extra></extra>", "legendgroup": "2", "marker": {"color": "red", "size": [20, 20, 20, 20, 20, 20, 20, 20, 20, 20], "sizemode": "area", "sizeref": 0.05, "symbol": "circle"}, "mode": "markers", "name": "2", "orientation": "v", "showlegend": true, "type": "scatter", "x": [0.75, 0.78, 0.75, 0.75, 0.77, 0.75, 0.75, 0.75, 0.75, 0.75], "xaxis": "x", "y": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "yaxis": "y"}, {"hovertemplate": "color=3<br>x=%{x}<br>y=%{y}<br>size=%{marker.size}<extra></extra>", "legendgroup": "3", "marker": {"color": "orange", "size": [20, 20, 20, 20, 20, 20, 20, 20, 20, 20], "sizemode": "area", "sizeref": 0.05, "symbol": "circle"}, "mode": "markers", "name": "3", "orientation": "v", "showlegend": true, "type": "scatter", "x": [0.82, 0.84, 0.82, 0.82, 0.83, 0.83, 0.82, 0.82, 0.82, 0.83], "xaxis": "x", "y": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "yaxis": "y"}, {"hovertemplate": "color=4<br>x=%{x}<br>y=%{y}<br>size=%{marker.size}<extra></extra>", "legendgroup": "4", "marker": {"color": "green", "size": [20, 20, 20, 20, 20, 20, 20, 20, 20, 20], "sizemode": "area", "sizeref": 0.05, "symbol": "circle"}, "mode": "markers", "name": "4", "orientation": "v", "showlegend": true, "type": "scatter", "x": [0.87, 0.87, 0.87, 0.87, 0.87, 0.87, 0.87, 0.87, 0.87, 0.87], "xaxis": "x", "y": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "yaxis": "y"}, {"hovertemplate": "color=5<br>x=%{x}<br>y=%{y}<br>size=%{marker.size}<extra></extra>", "legendgroup": "5", "marker": {"color": "blue", "size": [20, 20, 20, 20, 20, 20, 20, 20, 20, 20], "sizemode": "area", "sizeref": 0.05, "symbol": "circle"}, "mode": "markers", "name": "5", "orientation": "v", "showlegend": true, "type": "scatter", "x": [0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91, 0.91], "xaxis": "x", "y": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "yaxis": "y"}],                        {"height": 300, "legend": {"itemsizing": "constant", "title": {"text": "color"}, "tracegroupgap": 0}, "margin": {"t": 60}, "plot_bgcolor": "white", "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "autotypenumbers": "strict", "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "xaxis": {"anchor": "y", "domain": [0.0, 1.0], "showgrid": false, "tickformat": ".0%", "title": {"text": "Rate"}}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "showgrid": false, "showticklabels": false, "title": {"text": ""}, "zeroline": true, "zerolinecolor": "black", "zerolinewidth": 3}},                        {"responsive": true}                    ).then(function(){
+
+var gd = document.getElementById('a533d2af-1f3d-42de-a021-240e79dbb167');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+
+
+<iframe id="github-iframe" src="" width="100%" height="300" frameBorder="0"></iframe>
+<script>
+    fetch('https://api.github.com/repos/joelmontavon/star-ratings-cutpoints/contents/plot.html')
+        .then(function(response) {
+            return response.json();
+        }).then(function(data) {
+			console.log(data);
+            var iframe = document.getElementById('github-iframe');
+            iframe.src = 'data:text/html;base64,' + encodeURIComponent(data['content']);
+        });
+</script>
 
 <p>To create the final cutpoints, I use the minimum rate across all of the groups for each cluster.</p>
 
@@ -316,6 +388,19 @@ cutpoints[cutpoints['stars'] != 1]
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -338,12 +423,12 @@ cutpoints[cutpoints['stars'] != 1]
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>0.86</td>
+      <td>0.87</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>0.90</td>
+      <td>0.91</td>
     </tr>
   </tbody>
 </table>
@@ -410,6 +495,19 @@ thresholds_data.pivot(index=['contract_type','stars'], columns='measure')['rate'
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -444,20 +542,20 @@ thresholds_data.pivot(index=['contract_type','stars'], columns='measure')['rate'
     <tr>
       <th>3</th>
       <td>0.83</td>
-      <td>0.83</td>
+      <td>0.82</td>
       <td>0.82</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.87</td>
       <td>0.87</td>
-      <td>0.86</td>
+      <td>0.87</td>
     </tr>
     <tr>
       <th>5</th>
       <td>0.90</td>
       <td>0.90</td>
-      <td>0.90</td>
+      <td>0.91</td>
     </tr>
     <tr>
       <th rowspan="5" valign="top">PDP</th>
